@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-coverage-pv
+spec:
+  capacity:
+    storage: 100Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ebs-sc
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-01e81xxxxxxaxxxx
+    fsType: xfs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: topology.ebs.csi.aws.com/zone
+          operator: In
+          values:
+          - us-west-2a

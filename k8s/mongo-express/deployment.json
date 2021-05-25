@@ -1,0 +1,69 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "app": "mongo-express"
+      },
+      "name": "mongo-express-deployment",
+      "namespace": "sage"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "app": "mongo-express"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "app": "mongo-express"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "env": [
+                     {
+                        "name": "ME_CONFIG_MONGODB_ADMINUSERNAME",
+                        "valueFrom": {
+                          "secretKeyRef": {
+                              "name": "mongodb-secret",
+                              "key": "mongo-root-username"
+                          }
+                      }
+                     },
+                     {
+                        "name": "ME_CONFIG_MONGODB_ADMINPASSWORD",
+                        "valueFrom": {
+                          "secretKeyRef": {
+                             "name": "mongodb-secret",
+                             "key": "mongo-root-password"
+                          }
+                       }
+                     },
+                     {
+                        "name": "ME_CONFIG_MONGODB_SERVER",
+                        "valueFrom": {
+                          "configMapKeyRef": {
+                             "name": "mongodb-configmap",
+                             "key": "database_url"
+                          }
+                       }
+                     }
+                  ],
+                  "image": "mongo-express:latest",
+                  "imagePullPolicy": "Always",
+                  "name": "mongo-express",
+                  "ports": [
+                     {
+                        "containerPort": 8081
+                     }
+                  ]
+               }
+            ]
+         }
+      }
+   }
+}

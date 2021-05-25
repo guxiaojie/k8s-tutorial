@@ -1,0 +1,33 @@
+kubectl get pod my-pod -o yaml 
+kubectl describe configmap -n kube-system aws-auth
+
+kubectl get configmap -n kube-system aws-auth -o yaml 
+
+
+aws sts get-caller-identity
+358153424697    arn:aws:iam::358153424697:user/sage.gu@ihealthlabs.com  AIDAVGY43R44R6YIME66I
+kubectl get nodes --watch
+ip-20-0-101-130.us-west-2.compute.internal   Ready    <none>   160d   v1.17.12-eks-7684af
+ip-20-0-101-182.us-west-2.compute.internal   Ready    <none>   173d   v1.17.12-eks-7684af
+ip-20-0-101-193.us-west-2.compute.internal   Ready    <none>   143d   v1.17.12-eks-7684af
+ip-20-0-101-207.us-west-2.compute.internal   Ready    <none>   81d    v1.17.12-eks-7684af
+ip-20-0-101-30.us-west-2.compute.internal    Ready    <none>   81d    v1.17.12-eks-7684af
+ip-20-0-101-5.us-west-2.compute.internal     Ready    <none>   173d   v1.17.12-eks-7684af
+
+
+curl -o eks-console-full-access.yaml  https://s3.us-west-2.amazonaws.com/amazon-eks/docs/eks-console-full-access.yaml
+curl -o eks-console-restricted-access.yaml https://s3.us-west-2.amazonaws.com/amazon-eks/docs/eks-console-restricted-access.yaml
+
+aws opsworks --region us-west-2 describe-permissions --iam-user-arn arn:aws:iam::133700052738:root --profile 315114370 --stack-id d72553d4-8727-448c-9b00-f024f0ba1b06
+
+aws eks list-clusters
+CLUSTERS        dev-new-k8s-cluster
+CLUSTERS        test-k8s-cluster
+CLUSTERS        prod-k8s-cluster
+CLUSTERS        demo-mesh-cluster
+
+aws eks list-nodegroups --cluster-name dev-new-k8s-cluster
+ 
+aws eks describe-cluster --name dev-new-k8s-cluster
+
+kubectl get pods --as ruixue

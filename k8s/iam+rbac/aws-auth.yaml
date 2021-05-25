@@ -1,0 +1,41 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::358153424697:role/dev-new-ecs-instance-role
+      username: system:node:{{EC2PrivateDNSName}}
+    - groups:
+      - system:masters
+      rolearn: arn:aws:iam::358153424697:role/dev-new-k8s-admin
+      username: admin
+  mapUsers: |
+    - userarn: arn:aws:iam::358153424697:user/ruixue.liu@ihealthlabs.com
+      username: ruixue
+    - userarn: arn:aws:iam::358153424697:user/xiaoye.zhang@ihealthlabs.com
+      username: edward
+    - userarn: arn:aws:iam::358153424697:user/haidong.tan@ihealthlabs.com
+      username: haidong
+    - userarn: arn:aws:iam::358153424697:user/kun.jiang@ihealthlabs.com
+      username: kun.jiang
+    - userarn: arn:aws:iam::358153424697:user/aws.cmd.user
+      username: aws.cmd
+    - userarn: arn:aws:iam::358153424697:user/poureya.sohbati@ihealthlabs.com
+      username: poureya
+    - userarn: arn:aws:iam::358153424697:user/jinyin.wang@ihealthlabs.com
+      username: jinyin
+    - userarn: arn:aws:iam::358153424697:user/shuo.liu@ihealthlabs.com
+      username: shuoliu
+    - userarn: arn:aws:iam::358153424697:user/yuanfeng.zhu@ihealthlabs.com
+      username: yuanfeng
+    - userarn: arn:aws:iam::358153424697:user/xiaofeng@ihealthlabs.com
+      username: xiaofeng
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2020-07-16T08:56:09Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "25306433"
+  selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
+  uid: 7ec8e24c-27a9-4d90-bcbc-062d58ed4420
